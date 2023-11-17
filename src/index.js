@@ -1,31 +1,34 @@
 import "./style.css";
 
+const search = document.querySelector(".search");
+const submit = document.querySelector(".submit");
+
 const city = document.querySelector(".city");
 const temperature = document.querySelector(".temperature");
 const feelsLike = document.querySelector(".feels-like");
 const humidity = document.querySelector(".humidity");
 const wind = document.querySelector(".wind");
 
-let weatherData = [];
-
-async function getWeather() {
-  const response = await fetch(
-    "https://api.weatherapi.com/v1/current.json?key=066ec9f33ab64d4db68224838231411&q=toronto"
-  );
-  let data = await response.json();
-  return data;
+async function searchFunc() {
+  submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    let searchValue = search.value;
+    const response = fetch(
+      `https://api.weatherapi.com/v1/current.json?key=066ec9f33ab64d4db68224838231411&q=${searchValue}`,
+      { mode: "cors" }
+    )
+      .then(function (response) {
+        let data = response.json();
+        return data;
+      })
+      .then(function (data) {
+        city.textContent += ` ${data.location.name}`;
+        temperature.textContent += ` ${data.current.temp_c}`;
+        feelsLike.textContent += ` ${data.current.feelslike_c}`;
+        humidity.textContent += ` ${data.current.humidity}`;
+        wind.textContent += ` ${data.current.wind_kph}`;
+      });
+  });
 }
 
-async function displayWeather() {
-  let weatherData = await getWeather();
-  console.log(weatherData.location);
-  console.log(weatherData.current);
-  city.textContent += ` ${weatherData.location.name}`;
-  temperature.textContent += ` ${weatherData.current.temp_c}`;
-  feelsLike.textContent += ` ${weatherData.current.feelslike_c}`
-  humidity.textContent += ` ${weatherData.current.humidity}`
-  wind.textContent += ` ${weatherData.current.wind_kph}`
-
-}
-
-displayWeather();
+searchFunc();
