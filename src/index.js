@@ -3,9 +3,9 @@ import "./style.css";
 const search = document.querySelector(".search");
 const submit = document.querySelector(".submit");
 
-const city = document.querySelector(".city");
+const weatherCard = document.querySelector(".weather-card");
+const countryCity = document.querySelector(".country-city");
 const temperature = document.querySelector(".temperature");
-const feelsLike = document.querySelector(".feels-like");
 const humidity = document.querySelector(".humidity");
 const wind = document.querySelector(".wind");
 
@@ -22,11 +22,15 @@ async function searchFunc() {
         return data;
       })
       .then(function (data) {
-        city.textContent += ` ${data.location.name}`;
-        temperature.textContent += ` ${data.current.temp_c}`;
-        feelsLike.textContent += ` ${data.current.feelslike_c}`;
-        humidity.textContent += ` ${data.current.humidity}`;
-        wind.textContent += ` ${data.current.wind_kph}`;
+        console.log(data);
+        countryCity.textContent = ""
+        countryCity.textContent = `${data.location.country}, ${data.location.name}`;
+        temperature.textContent = ""
+        temperature.textContent = `${data.current.temp_c} ℃`;
+        humidity.textContent = ""
+        humidity.textContent = `${data.current.humidity}`;
+        wind.textContent = ""
+        wind.textContent = `${data.current.wind_kph}`;
       });
   });
 }

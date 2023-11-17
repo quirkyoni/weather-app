@@ -12,8 +12,18 @@ body {
 }
 
 .weather-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row: auto auto;
+  align-items: center;
+  text-align: center;
   margin-top: 1rem;
   margin-bottom: 37px;
   border: 1px solid black;
-  padding: 0.5rem 5rem 0.5rem 1rem;
+  width: 250px;
+  height: 125px;
+}
+
+.country-city {
+  grid-column: span 3;
 }
