@@ -1,4 +1,7 @@
 import "./style.css";
+// import temperatureImg from './temperature.png'
+// import windImg from './wind.png'
+// import humidityImg from './humidity.png'
 
 const search = document.querySelector(".search");
 const submit = document.querySelector(".submit");
@@ -18,19 +21,20 @@ async function searchFunc() {
       { mode: "cors" }
     )
       .then(function (response) {
+        console.log(response);
         let data = response.json();
         return data;
       })
       .then(function (data) {
-        console.log(data);
-        countryCity.textContent = ""
+        console.log(data)
+        countryCity.textContent = "";
         countryCity.textContent = `${data.location.country}, ${data.location.name}`;
-        temperature.textContent = ""
+        temperature.textContent = "";
         temperature.textContent = `${data.current.temp_c} ℃`;
-        humidity.textContent = ""
+        humidity.textContent = "";
         humidity.textContent = `${data.current.humidity}`;
-        wind.textContent = ""
-        wind.textContent = `${data.current.wind_kph}`;
+        wind.textContent = "";
+        wind.textContent = `${data.current.wind_kph} km/h`;
       });
   });
 }
