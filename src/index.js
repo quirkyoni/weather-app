@@ -22,7 +22,6 @@ async function getWeather(searchValue) {
 }
 
 const handleWeatherData = (weatherData) => {
-  console.log(weatherData.location);
   countryCity.textContent = "";
   countryCity.textContent = `${weatherData.location.country}, ${weatherData.location.name}`;
   temperature.textContent = "";
@@ -47,3 +46,4 @@ submit.addEventListener("click", (e) => {
   let searchValue = search.value
   main(searchValue)
 })
+
