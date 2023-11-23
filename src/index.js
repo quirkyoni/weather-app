@@ -11,6 +11,9 @@ const countryCity = document.querySelector(".country-city");
 const temperature = document.querySelector(".temperature");
 const humidity = document.querySelector(".humidity");
 const wind = document.querySelector(".wind");
+const units = document.querySelector(".units");
+const celsius = document.querySelector(".celsius");
+const fahrenheit = document.querySelector(".fahrenheit");
 
 async function getWeather(searchValue) {
   const response = await fetch(
@@ -22,6 +25,18 @@ async function getWeather(searchValue) {
 }
 
 const handleWeatherData = (weatherData) => {
+  units.style.display = "block";
+  units.addEventListener("click", (e) => {
+    console.log(e.target);
+    if (e.target.className == "celsius") {
+      temperature.textContent = "";
+      temperature.textContent = `${weatherData.current.temp_c} ℃`;
+    } else if (e.target.className == "fahrenheit") {
+      temperature.textContent = "";
+      temperature.textContent = `${weatherData.current.temp_f} ℉`;
+    }
+  });
+
   countryCity.textContent = "";
   countryCity.textContent = `${weatherData.location.country}, ${weatherData.location.name}`;
   temperature.textContent = "";
@@ -42,8 +57,7 @@ async function main(searchValue) {
 }
 
 submit.addEventListener("click", (e) => {
-  e.preventDefault()
-  let searchValue = search.value
-  main(searchValue)
-})
-
+  e.preventDefault();
+  let searchValue = search.value;
+  main(searchValue);
+});
