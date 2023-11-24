@@ -52,7 +52,8 @@ async function main(searchValue) {
     const weatherData = await getWeather(searchValue);
     handleWeatherData(weatherData);
   } catch (error) {
-    console.log(error.error);
+    alert("Please enter a valid city name.");
+    window.location.reload();
   }
 }
 
