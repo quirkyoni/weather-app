@@ -1,5 +1,9 @@
 import "./style.css";
 
+import temperatureImg from "./temperature.png";
+import windImg from "./wind.png";
+import humidityImg from "./humidity.png";
+
 const search = document.querySelector(".search");
 const submit = document.querySelector(".submit");
 
