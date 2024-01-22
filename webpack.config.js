@@ -1,3 +1,5 @@
+// webpack.config.js
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
@@ -10,8 +12,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "index-custom.html", // Specify a different filename
-      template: "dist/index.html", // Path to your HTML template
+      filename: "index.html", 
+      template: "src/index.html",
     }),
   ],
   module: {
@@ -23,6 +25,9 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
+        generator: {
+          filename: "img/[name][ext]",
+        },
       },
     ],
   },
